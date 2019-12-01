@@ -44,15 +44,15 @@ require "shellwords"
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("api-template-"))
+    source_paths.unshift(tempdir = Dir.mktmpdir("rails-api-template-"))
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
-      "https://github.com/erikjenks/api-template.git",
+      "https://github.com/erikjenks/rails-api-template.git",
       tempdir
     ].map(&:shellescape).join(" ")
 
-    if (branch = __FILE__[%r{api-template/(.+)/template.rb}, 1])
+    if (branch = __FILE__[%r{api-template/(.+)/rails-template.rb}, 1])
       Dir.chdir(tempdir) { git checkout: branch }
     end
   else
