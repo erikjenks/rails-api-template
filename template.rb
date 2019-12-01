@@ -93,7 +93,7 @@ def assert_postgresql
       "but the pg gem isn’t present in your Gemfile."
 end
 
-ef git_repo_url
+def git_repo_url
   @git_repo_url ||=
     ask_with_default("What is the git remote URL for this project?", :blue, "skip")
 end
